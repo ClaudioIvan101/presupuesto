@@ -6,12 +6,13 @@ import { useApp } from "@/lib/AppContext";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { showToast } = useApp();
+  const { profile, showToast } = useApp();
 
   return (
     <DashboardView
       onNavigate={(page) => router.push(`/${page}`)}
       onToast={showToast}
+      displayName={profile.name}
     />
   );
 }

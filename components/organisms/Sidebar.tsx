@@ -26,7 +26,15 @@ export interface SidebarProps {
 export function Sidebar({ isOpenMobile, onCloseMobile }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { resetProfile } = useApp();
+  const { profile, resetProfile } = useApp();
+  const profileName = profile.name || "Claudio Gómez";
+  const profileEmail = profile.email || "claudio@quoteflow.dev";
+  const profileInitials = profileName
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   const handleSignOut = () => {
     localStorage.removeItem("access_token");
@@ -135,14 +143,14 @@ export function Sidebar({ isOpenMobile, onCloseMobile }: SidebarProps) {
 
           <div className="flex items-center gap-2.5 rounded-[var(--radius-md)] p-2 hover:bg-[var(--surface2)] transition-colors">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface2)] text-[12px] font-semibold text-[var(--text)]">
-              CG
+                {profileInitials}
             </div>
             <div className="min-w-0 flex-1">
               <b className="block text-[13px] font-semibold text-[var(--text)] truncate">
-                Claudio Gómez
+                {profileName}
               </b>
               <span className="block text-[11.5px] text-[var(--muted)] truncate">
-                claudio@quoteflow.dev
+                {profileEmail}
               </span>
               <Button size="sm" variant="ghost" onClick={() => {
                 handleSignOut()

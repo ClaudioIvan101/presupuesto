@@ -9,6 +9,7 @@ import { ActivityItem, FunnelItem, MetricItem } from "@/types";
 export interface DashboardViewProps {
   onNavigate: (page: string) => void;
   onToast: (msg: string) => void;
+  displayName?: string;
 }
 
 const metrics: MetricItem[] = [
@@ -32,14 +33,16 @@ const funnel: FunnelItem[] = [
   { label: "Rechazados", count: 2, percentage: 15 },
 ];
 
-export function DashboardView({ onNavigate, onToast }: DashboardViewProps) {
+export function DashboardView({ onNavigate, onToast, displayName }: DashboardViewProps) {
+  const greetingName = displayName?.trim().split(/\s+/)[0] || "Claudio";
+
   return (
     <div className="space-y-7 page-transition">
       {/* Page Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-[32px] font-semibold tracking-[-0.025em] text-[var(--text)] leading-tight">
-            Buenas noches, Claudio.
+            Buenas noches, {greetingName}.
           </h1>
           <p className="mt-1.5 text-[14px] text-[var(--muted)] leading-relaxed max-w-[650px]">
             Todo lo importante de tus presupuestos, sin convertirlo en un CRM.

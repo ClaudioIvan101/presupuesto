@@ -249,7 +249,7 @@ export function SettingsView({ onSave }: SettingsViewProps) {
                       Notificar cuando el cliente abra
                     </b>
                     <p className="text-[11.5px] text-[var(--muted)] mt-0.5">
-                      Genera el estado "Visto" y registra la última apertura.
+                      Genera el estado &quot;Visto&quot; y registra la última apertura.
                     </p>
                   </div>
                   <Switch checked={notifyOpen} onChange={setNotifyOpen} />

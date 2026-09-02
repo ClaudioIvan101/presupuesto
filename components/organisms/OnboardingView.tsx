@@ -182,7 +182,11 @@ export function OnboardingView() {
             </FormField>
           </div>
 
-          <FormField label="Logo (opcional)" helperText={logoError ?? "Podés subirlo ahora o agregarlo después."}>
+          <FormField
+            label="Logo (opcional)"
+            error={logoError ?? undefined}
+            helperText={logoError ? undefined : "Podés subirlo ahora o agregarlo después."}
+          >
             <label
               htmlFor="profile-logo"
               onDragOver={(event) => event.preventDefault()}
