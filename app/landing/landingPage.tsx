@@ -23,7 +23,7 @@ export default function Landing() {
                             Iniciar Sesión
                         </Button>
                     </Link>
-                    <Link href="/dashboard">
+                    <Link href="/onboarding">
                         <Button variant="primary" size="sm">
                             Registrarse
                         </Button>

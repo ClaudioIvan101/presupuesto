@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { BuilderState } from "@/types";
+import { BuilderState, UserProfile } from "@/types";
 
 const initialBuilderState: BuilderState = {
   step: 1,
@@ -16,11 +16,26 @@ const initialBuilderState: BuilderState = {
   validity: "15 días",
 };
 
+const initialProfile: UserProfile = {
+  name: "",
+  email: "",
+  logo: null,
+  currency: "USD",
+  country: "Argentina",
+  companyType: "",
+  referralSource: "",
+  onboardingComplete: false,
+};
+
 interface AppContextType {
   theme: "light" | "dark";
   toggleTheme: () => void;
   builderState: BuilderState;
   setBuilderState: React.Dispatch<React.SetStateAction<BuilderState>>;
+  profile: UserProfile;
+  setProfile: React.Dispatch<React.SetStateAction<UserProfile>>;
+  completeOnboarding: (profile: Omit<UserProfile, "onboardingComplete">) => void;
+  resetProfile: () => void;
   isClientModalOpen: boolean;
   setIsClientModalOpen: (open: boolean) => void;
   decisionModal: { isOpen: boolean; title: string; description: string };
@@ -36,6 +51,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [builderState, setBuilderState] = useState<BuilderState>(initialBuilderState);
+  const [profile, setProfile] = useState<UserProfile>(initialProfile);
   const [isClientModalOpen, setIsClientModalOpen] = useState(false);
   const [decisionModal, setDecisionModal] = useState({
     isOpen: false,
@@ -68,6 +84,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setDecisionModal((prev) => ({ ...prev, isOpen: false }));
   };
 
+  const completeOnboarding = (profileData: Omit<UserProfile, "onboardingComplete">) => {
+    setProfile({ ...profileData, onboardingComplete: true });
+  };
+
+  const resetProfile = () => {
+    setProfile(initialProfile);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -75,6 +99,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         toggleTheme,
         builderState,
         setBuilderState,
+        profile,
+        setProfile,
+        completeOnboarding,
+        resetProfile,
         isClientModalOpen,
         setIsClientModalOpen,
         decisionModal,

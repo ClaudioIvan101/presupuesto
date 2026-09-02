@@ -9,5 +9,6 @@ export * from "./PublicQuoteView";
 export * from "./SettingsView";
 export * from "./ClientModal";
 export * from "./DecisionModal";
+export * from "./OnboardingView";
 export * from "./BudgetTable";
 export * from "./Navbar";

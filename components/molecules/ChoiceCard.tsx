@@ -20,6 +20,7 @@ export function ChoiceCard({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={isSelected}
       className={cn(
         "rounded-[var(--radius-md)] border bg-[var(--surface)] p-4 text-left transition-all duration-200 cursor-pointer select-none",
         "hover:border-[var(--border-strong)] hover:-translate-y-0.5 hover:shadow-[0_5px_16px_rgba(0,0,0,0.045)]",

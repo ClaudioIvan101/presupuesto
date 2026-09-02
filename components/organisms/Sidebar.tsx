@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "../atoms";
 import { useRouter } from "next/navigation";
+import { useApp } from "@/lib/AppContext";
 
 export interface SidebarProps {
   isOpenMobile?: boolean;
@@ -25,10 +26,12 @@ export interface SidebarProps {
 export function Sidebar({ isOpenMobile, onCloseMobile }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const { resetProfile } = useApp();
 
   const handleSignOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    resetProfile();
     router.push("/landing");
   };
 

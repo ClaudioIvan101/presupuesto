@@ -1,5 +1,32 @@
 export type QuoteModel = "hour" | "feature" | "fixed" | "implementation" | "retainer" | "custom";
 
+export type ProfileCurrency = "USD" | "ARS" | "EUR" | "MXN";
+
+export type CompanyType = "landing" | "software" | "other";
+
+export type ReferralSource =
+  | "google"
+  | "social"
+  | "recommendation"
+  | "community"
+  | "other";
+
+export interface ProfileLogo {
+  name: string;
+  previewUrl: string;
+}
+
+export interface UserProfile {
+  name: string;
+  email: string;
+  logo: ProfileLogo | null;
+  currency: ProfileCurrency;
+  country: string;
+  companyType: CompanyType | "";
+  referralSource: ReferralSource | "";
+  onboardingComplete: boolean;
+}
+
 export type QuoteStatus = "accepted" | "viewed" | "sent" | "draft" | "rejected";
 
 export interface ClientItem {
@@ -103,4 +130,3 @@ export interface Budget {
   createdAt: string;
   updatedAt: string;
 }
-

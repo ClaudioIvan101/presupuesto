@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { AppProvider, useApp } from "@/lib/AppContext";
+import { useApp } from "@/lib/AppContext";
 import { Sidebar } from "@/components/organisms/Sidebar";
 import { Topbar } from "@/components/organisms/Topbar";
 import { ClientModal } from "@/components/organisms/ClientModal";
@@ -72,9 +72,5 @@ function AppLayoutContent({ children }: { children: React.ReactNode }) {
 }
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <AppProvider>
-            <AppLayoutContent>{children}</AppLayoutContent>
-        </AppProvider>
-    );
+    return <AppLayoutContent>{children}</AppLayoutContent>;
 }

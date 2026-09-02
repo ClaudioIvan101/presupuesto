@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface FormFieldProps {
   label: string;
+  htmlFor?: string;
   error?: string;
   helperText?: string;
   className?: string;
@@ -11,6 +12,7 @@ export interface FormFieldProps {
 
 export function FormField({
   label,
+  htmlFor,
   error,
   helperText,
   className,
@@ -18,7 +20,10 @@ export function FormField({
 }: FormFieldProps) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label className="text-[11.5px] font-medium text-[var(--muted)]">
+      <label
+        htmlFor={htmlFor}
+        className="text-[11.5px] font-medium text-[var(--muted)]"
+      >
         {label}
       </label>
       {children}
